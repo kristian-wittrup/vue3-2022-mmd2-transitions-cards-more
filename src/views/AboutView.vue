@@ -8,6 +8,21 @@
     <Transition name="fade">
       <h1 v-if="!isHidden">Hide me on click event!</h1>
     </Transition>  
+
+
+  <div class="row">
+    <div id="box1" class="col-12 col-sm-7 col-md-4">1</div>
+    <div id="box2" class="col-12 col-sm-5 col-md-4">2</div>
+    <div id="box3" class="col-12 col-sm-12 col-md-4">3</div>
+  </div>
+
+
+
+<!--     <div class="row">
+      <div id="box1" class="col-12 col-sm-7 col-md-3">1</div>
+      <div id="box2" class="col-12 col-sm-5 col-md-8">2</div>
+      <div id="box3" class="col-12 col-sm-12 col-md-1">3</div>
+    </div> -->
   </div>
 </template>
 
@@ -16,6 +31,7 @@ import { ref } from 'vue'
 export default {
   setup() {
     let isHidden = ref(false)
+    
 
     return {
       isHidden
@@ -25,6 +41,19 @@ export default {
 </script>
 
 <style>
+#box1 {
+  background-color: lightblue
+}
+
+#box2 {
+  background-color: lightseagreen
+}
+
+#box3 {
+  background-color: lightpink
+}
+
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
@@ -33,7 +62,6 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
- 
 }
 
 /*
