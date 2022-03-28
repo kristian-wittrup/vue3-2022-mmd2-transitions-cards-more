@@ -17,12 +17,25 @@
   </div>
 
 
+<hr>
 
-<!--     <div class="row">
-      <div id="box1" class="col-12 col-sm-7 col-md-3">1</div>
-      <div id="box2" class="col-12 col-sm-5 col-md-8">2</div>
-      <div id="box3" class="col-12 col-sm-12 col-md-1">3</div>
-    </div> -->
+<div>
+  v-for loops - no loop
+  <ul>
+    <li>first item</li>
+    <li>first item</li>
+    <li>first item</li>
+  </ul>
+    v-for loops - with loopy
+  <ul>
+    <li v-for="listitem in myArray" :key="listitem">
+      {{listitem}}
+    </li>
+
+  </ul>
+</div>
+
+
   </div>
 </template>
 
@@ -31,16 +44,49 @@ import { ref } from 'vue'
 export default {
   setup() {
     let isHidden = ref(false)
-    
+  
+    let myArray = ref(
+        [
+          "first item", 
+          "second item", 
+          "third item",
+            "first item", 
+          "second item", 
+          "third item",
+        ]
+      )
 
     return {
-      isHidden
+      isHidden,
+      myArray
     }
   }
 }
 </script>
 
 <style>
+
+/* style binding */
+.static {
+  height:30px;
+  background-color: lightgrey;
+}
+
+.active {
+   height:30px;
+    background-color: lightblue;
+}
+
+.text-danger {
+   height:30px;
+  color:orange;
+  font-weight: bold;
+}
+
+
+
+
+
 #box1 {
   background-color: lightblue
 }
