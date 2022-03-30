@@ -19,21 +19,6 @@
 
 <hr>
 
-<div>
-  v-for loops - no loop
-  <ul>
-    <li>first item</li>
-    <li>first item</li>
-    <li>first item</li>
-  </ul>
-    v-for loops - with loopy
-  <ul>
-    <li v-for="listitem in myArray" :key="listitem">
-      {{listitem}}
-    </li>
-
-  </ul>
-</div>
 
 
   </div>
@@ -45,20 +30,9 @@ export default {
   setup() {
     let isHidden = ref(false)
   
-    let myArray = ref(
-        [
-          "first item", 
-          "second item", 
-          "third item",
-            "first item", 
-          "second item", 
-          "third item",
-        ]
-      )
-
+   
     return {
-      isHidden,
-      myArray
+      isHidden
     }
   }
 }

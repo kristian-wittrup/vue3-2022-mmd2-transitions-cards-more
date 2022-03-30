@@ -2,24 +2,31 @@
  <div class="container-md"> <!-- switch to margin x over MD size(fluid and !fluid) -->
   <div class="row">
 
-    <div :class="{active: isActive, 'text-color': isActive}">text</div>
 
-    <button @click="showMeDaData()">show data</button>
-    <div v-if="showData">
-      loading data...
+
+    
+    <div :class="{active: isActive}">
+      Text
     </div>
-    <div v-else class="col-12 col-sm-6 col-md-4 mb-4" v-for="projectItem in projects" :key="projectItem">
+ 
+
+    <button @click="showMeDaData()">Show me da data</button>
+
+    <div v-if="showData">
+      <h2>Loading data...</h2>
+    </div>
+
+    <div v-else v-for="project in projects" :key="project" class="col-12 col-sm-6 col-md-4 mb-4" >
       <div class="card" style="">
-        <img :src="projectItem.projectURL" class="card-img-top" alt="...">
+        <img :src="project.projectURL" class="card-img-top" alt="...">
         <div class="card-body justify-content-start">
-          <h5 id="cardOne" class="card-title ">{{projectItem.projectTitle}}</h5>
-          <p class="card-text">{{projectItem.projectDescription}}</p>
-          <a href="#" class="btn btn-primary">Go somewhere {{projectItem.id}}</a>
+          <h5 id="cardOne" class="card-title ">{{project.projectTitle}}</h5>
+          <p class="card-text">{{project.projectDescription}}</p>
+          <a href="#" class="btn btn-primary">Go somewhere {{project.projectID}}</a>
         </div>
       </div>
     </div>
 
-  
 
   </div>
   
@@ -31,33 +38,42 @@ import { ref } from 'vue'
 
 export default {
   setup() {
+    
     let showData = ref(true)
     let isActive = ref(false)
 
-    /* function showMeDaData() {
-      showData.value = !showData.value
-      isActive.value = !isActive.value
-    } */
-
-    let showMeDaData = () => {
+    function showMeDaData() {
       showData.value = !showData.value
       isActive.value = !isActive.value
     }
 
+
     let projects = ref([
       {
-        id: 1,
-        projectURL:"https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdHN8ZW58MHx8MHx8&w=1000&q=80",
-        projectTitle:"Card TitleOne",
-        projectDescription:"Some quick example text to build up the bulk of the card's content."
+        projectID: 1,
+        projectTitle: "Card One",
+        projectDescription: "Lorem ipsum, text is very nice. Much wow",
+        projectURL: "https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdHN8ZW58MHx8MHx8&w=1000&q=80",
+        projectCategory: "Video"
+      }, 
+       {
+        projectID: 2,
+        projectTitle: "Card Two",
+        projectDescription: "Lorem ipsum, text is very nice. Much wow2",
+        projectURL: "https://static.posters.cz/image/1300/image/750/fototapeter/waterfall-lake-i78441.jpg"
       },
       {
-        id:2,
-        projectURL:"https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdHN8ZW58MHx8MHx8&w=1000&q=80",
-        projectTitle:"Card TitleTwo",
-        projectDescription:"Lorem ipsum"
-      }, 
-      
+        projectID: 3,  
+        projectTitle: "Card Two",
+        projectDescription: "Lorem ipsum, text is very nice. Much wow2",
+        projectURL: "https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdHN8ZW58MHx8MHx8&w=1000&q=80"
+      },
+      {
+        projectID: 4,
+        projectTitle: "Card Two",
+        projectDescription: "Lorem ipsum, text is very nice. Much wow2",
+        projectURL: "https://images.unsplash.com/photo-1572177812156-58036aae439c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdHN8ZW58MHx8MHx8&w=1000&q=80"
+      }
     ])
 
     return {
