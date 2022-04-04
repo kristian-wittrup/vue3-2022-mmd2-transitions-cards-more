@@ -30,7 +30,7 @@ export default {
 
     const { projects } = getProjects();  // 1 
  
-    let filteredProjectOnId = computed(() => {
+    let filteredProjectOnId = computed(() => { // using our route.params.id to only show data from the object with the same id
       return projects.value.filter(i => i.projectID == routeId.value)
     })
 

@@ -31,6 +31,7 @@
       <div class="card">
         <img :src="project.projectURL" class="card-img-top" alt="...">
         <div class="card-body justify-content-start">
+          <!-- // 1 (also go to router/index.js) -->
           <router-link :to="{ name: 'ProjectDetails', params:{ id : project.projectID }}"> <!-- Router-link connect with router/index.js file. It send the id of the given item(project) in the forLoop, so we can then use it to present only data from that objectItem -->
             <h5 id="cardOne" class="card-title ">{{project.projectTitle}}</h5>
           </router-link>  
@@ -66,10 +67,10 @@ export default {
     const { projects } = getProjects();  // 1 
 
     // search variable :: empty at start, and will only be populated when we either type in characters or click a "category"
-    const searchQuery = ref("")
+    const searchQuery = ref("") // 3
   
     // Double whooper: Sorting on both category and input fields.  
-    const searchedProjects = computed(() => {
+    const searchedProjects = computed(() => { // 3+4
       return projects.value.filter((project) => {
         if (searchQuery.value == project.projectCategory.toLowerCase() ){ // If the input is the same as a productCategory from our "database", it will sort based only on categoies, not inputted charaters
           return (
@@ -85,10 +86,24 @@ export default {
           );
         }
       });
-    });
+    }); 
 
+
+// 3
+// Only a standard search without check for category names
+    /* const searchedProjects = computed(() => {
+      return projects.value.filter((project) => {
+        return (
+          project.projectTitle
+            .toLowerCase()
+            .indexOf(searchQuery.value.toLowerCase()) != -1
+          );
+        });
+      });  
+
+ */
     // Filter on category (must have project category key:value to work)
-    let categoryWeb = () => {
+     let categoryWeb = () => { // 4
       searchQuery.value = "Web".toLowerCase()
     }
     let categoryVideo = () => {
@@ -97,7 +112,8 @@ export default {
     let categoryNone = () => {
       searchQuery.value = ""
     }
-
+ 
+    // 1
     // Moving data(projects) to a "database" files, that we then import and use. Line 50 + 66
     /* let projects = ref([
       {
@@ -128,15 +144,15 @@ export default {
     ]) */
 
     return {
-      searchQuery, // Search 
-      searchedProjects,  // Search 
+      searchQuery, // Search                        // 3
+      searchedProjects,  // Search                  // 3
 
-      categoryWeb, // Category btn click filter
-      categoryVideo, // Category btn click filter
-      categoryNone, // Category btn click filter
+      categoryWeb, // Category btn click filter     // 4
+      categoryVideo, // Category btn click filter   // 4
+      categoryNone, // Category btn click filter    // 4
+ 
 
-
-      projects, // Expose our "database" variable, which is an array with objects inside
+      projects, // Expose our "database" variable, which is an array with objects inside                                // 1
       showData, // expose variable to Vue view
       showMeDaData, // expose variable to Vue view
       isActive, // expose variable to Vue view
